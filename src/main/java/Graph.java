@@ -14,4 +14,13 @@ public class Graph<E>
         return labels[vertex];
     }
 
+    public boolean isEdge(int source, int target)
+    {
+        return edges [source][target];
+    }
+
+    public void addEdge(int source, int target)
+    {
+        edges[source][target] = true;
+    }
 }
