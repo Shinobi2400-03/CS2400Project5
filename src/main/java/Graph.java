@@ -19,9 +19,6 @@ public class Graph<E>
 
         return edges [source][target];
     }
-//
-//        return edges[source][target];
-//    }
 
     public void addEdge(int source, int target)
     {
