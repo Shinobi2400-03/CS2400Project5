@@ -1,13 +1,24 @@
 import java.util.Iterator;
+<<<<<<< HEAD
+import java.util.ListIterator;
+=======
+>>>>>>> 4580f9c3d2b0a55b8a06cda12dc5665eb4892989
 import java.util.NoSuchElementException;
 
 public class Vertex<T> implements VertexInterface<T>
 {
     private T label;
+<<<<<<< HEAD
+    private ListIterator<T> edgeList;
+    private boolean visited;
+    private VertexInterface<T> previousVertex;
+    private double cost;
+=======
     private boolean visited;                          // True if visited
     private VertexInterface<T> previousVertex;        // On path to this vertex
     private double cost;                              // Of path to this vertex
     private T data;
+>>>>>>> 4580f9c3d2b0a55b8a06cda12dc5665eb4892989
 
     public Vertex(T vertexLabel)
     {
@@ -21,7 +32,7 @@ public class Vertex<T> implements VertexInterface<T>
     @Override
     public T getLabel()
     {
-        return data;
+        return label;
     }
 
     @Override
@@ -155,4 +166,38 @@ public class Vertex<T> implements VertexInterface<T>
             return weight;
         } // end getWeight
     } // end Edge
+
+    private class NeighborIterator implements Iterator<VertexInterface<T>>
+    {
+
+        private Iterator<Edge> edges;
+
+        private NeighborIterator()
+        {
+            edges = edgeList.getIterator();
+        }
+        @Override
+        public boolean hasNext()
+        {
+            return edges.hasNext();
+        }
+
+        @Override
+        public VertexInterface<T> next()
+        {
+            VertexInterface<T> nextNeighbor = null;
+            if (edges.hasNext())
+            {
+                Edge edgeToNextNeighbor = edges.next();
+                nextNeighbor = edgeToNextNeighbor.getEndVertex();
+            }
+            else
+                throw new NoSuchElementException();
+            return nextNeighbor;
+        }
+        public void remove()
+        {
+            throw new UnsupportedOperationException();
+        } // end remove
+    } // end NeighborIterator
 }

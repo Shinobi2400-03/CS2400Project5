@@ -1,3 +1,15 @@
+<<<<<<< HEAD
+import java.util.Iterator;
+public class Graph<T>
+{
+    private boolean[][] edges;
+    private T[] labels;
+
+    public Graph(int n)
+    {
+        edges = new boolean[n][n];
+        labels = (T[]) new Object[n];
+=======
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -15,9 +27,10 @@ public final class Graph<E>
         vertices = n;
         edges = new boolean[vertices][vertices];
         labels = (E[]) new Object[vertices];
+>>>>>>> 4580f9c3d2b0a55b8a06cda12dc5665eb4892989
     }
 
-    public E getLabel(int vertex)
+    public T getLabel(int vertex)
     {
         return labels[vertex];
     }
@@ -68,8 +81,42 @@ public final class Graph<E>
     {
         return labels.length;
     }
-    public QueueInterface<E> getBreadthFirstTraversal(E origin)
+    // @author Frank M. Carrano, Timothy M. Henry
+// @version 5.0
+    public QueueInterface<T> getBreadthFirstTraversal(T origin)
     {
+<<<<<<< HEAD
+        resetVertices();
+        QueueInterface<T> traversalOrder = new LinkedQueue<>();
+        QueueInterface<VertexInterface<T>> vertexQueue = new LinkedQueue<>();
+
+        VertexInterface<T> originVertex = vertices.getValue(origin);
+        originVertex.visit();
+        traversalOrder.enqueue(origin);    // Enqueue vertex label
+        vertexQueue.enqueue(originVertex); // Enqueue vertex
+
+        while (!vertexQueue.isEmpty())
+        {
+            VertexInterface<T> frontVertex = vertexQueue.dequeue();
+            Iterator<VertexInterface<T>> neighbors = frontVertex.getNeighborIterator();
+
+            while (neighbors.hasNext())
+            {
+                VertexInterface<T> nextNeighbor = neighbors.next();
+                if (!nextNeighbor.isVisited())
+                {
+                    nextNeighbor.visit();
+                    traversalOrder.enqueue(nextNeighbor.getLabel());
+                    vertexQueue.enqueue(nextNeighbor);
+                } // end if
+            } // end while
+        } // end while
+
+        return traversalOrder;
+    } // end getBreadthFirstTraversal
+
+
+=======
         return null;
     }
 
@@ -133,5 +180,6 @@ public final class Graph<E>
 //        }
 //        return traversalOrder;
     }
+>>>>>>> 4580f9c3d2b0a55b8a06cda12dc5665eb4892989
 }
 
