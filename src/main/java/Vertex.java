@@ -1,9 +1,22 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class Vertex<T> implements VertexInterface<T>
 {
-    private boolean visited;
+    private T label;
+    private boolean visited;                          // True if visited
+    private VertexInterface<T> previousVertex;        // On path to this vertex
+    private double cost;                              // Of path to this vertex
     private T data;
+
+    public Vertex(T vertexLabel)
+    {
+        label = vertexLabel;
+        visited = false;
+        previousVertex = null;
+        cost = 0;
+    } // end constructor
+
 
     @Override
     public T getLabel()
@@ -79,7 +92,15 @@ public class Vertex<T> implements VertexInterface<T>
 
     @Override
     public VertexInterface<T> getUnvisitedNeighbor() {
-        return null;
+        VertexInterface<T> result = null;
+        Iterator<VertexInterface<T>> neighbors = getNeighborIterator();
+        while ( neighbors.hasNext() && (result == null) )
+        {
+            VertexInterface<T> nextNeighbor = neighbors.next();
+            if (!nextNeighbor.isVisited())
+                result = nextNeighbor;
+        } // end while
+        return result;
     }
 
     @Override
