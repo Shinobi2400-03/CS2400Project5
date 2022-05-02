@@ -88,7 +88,7 @@ public class Vertex<T> implements VertexInterface<T>
     @Override
     public boolean hasNeighbor() {
         return false;
-    }
+    }//
 
     @Override
     public VertexInterface<T> getUnvisitedNeighbor() {
