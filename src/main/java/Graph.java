@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import java.util.Iterator;
 public class Graph<T>
 {
@@ -8,6 +9,25 @@ public class Graph<T>
     {
         edges = new boolean[n][n];
         labels = (T[]) new Object[n];
+=======
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.io.*;
+import java.util.Vector;
+
+public final class Graph<E>
+{
+    private boolean[][] edges;
+    private E[] labels;
+    private int vertices;
+
+    public Graph(int n)
+    {
+        vertices = n;
+        edges = new boolean[vertices][vertices];
+        labels = (E[]) new Object[vertices];
+>>>>>>> 4580f9c3d2b0a55b8a06cda12dc5665eb4892989
     }
 
     public T getLabel(int vertex)
@@ -23,7 +43,7 @@ public class Graph<T>
 
     public void addEdge(int source, int target)
     {
-        edges[source][target] = true;
+        edges[source][target] = false;
     }
 
     public int[] neighbors(int vertex)
@@ -65,6 +85,7 @@ public class Graph<T>
 // @version 5.0
     public QueueInterface<T> getBreadthFirstTraversal(T origin)
     {
+<<<<<<< HEAD
         resetVertices();
         QueueInterface<T> traversalOrder = new LinkedQueue<>();
         QueueInterface<VertexInterface<T>> vertexQueue = new LinkedQueue<>();
@@ -95,5 +116,70 @@ public class Graph<T>
     } // end getBreadthFirstTraversal
 
 
+=======
+        return null;
+    }
+
+    public void getDepthFirstTraversal(E origin)
+    {
+        StackInterface<VertexInterface<E>> vertexStack = new LinkedStack();
+        VertexInterface<E> originVertex = new Vertex(origin);
+
+        vertexStack.push(originVertex);
+        originVertex.visit();
+
+        while(!vertexStack.isEmpty())
+        {
+            originVertex = vertexStack.peek();
+            vertexStack.pop();
+            if(!originVertex.isVisited())
+            {
+                System.out.print(origin + " ");
+                originVertex.isVisited();
+            }
+
+            VertexInterface<E> next = originVertex.getUnvisitedNeighbor();
+            while(!next.isVisited())
+            {
+                vertexStack.push(next);
+            }
+        }
+
+//        QueueInterface<E> traversalOrder = new LinkedQueue<E>();
+//        StackInterface<VertexInterface<E>> vertexStack = new LinkedStack();
+//
+//        VertexInterface<E> originVertex = new Vertex(origin);
+//        originVertex.visit();
+//        traversalOrder.enqueue(origin);
+//        vertexStack.push(originVertex);
+//
+//        while(!vertexStack.isEmpty())
+//        {
+//            originVertex = vertexStack.peek();
+//            vertexStack.pop();
+//
+//            if(!originVertex.isVisited())
+//            {
+//                System.out.println(origin + " ");
+//                originVertex.visit();
+//            }
+//
+//            VertexInterface<E> topVertex = vertexStack.peek();
+//            VertexInterface<E> next = topVertex.getUnvisitedNeighbor();
+//
+//            while(next != null)
+//            {
+//                if(!next.isVisited())
+//                {
+//                    next.visit();
+//                    traversalOrder.enqueue(next.getLabel());
+//                    vertexStack.push(next);
+//                }
+//                vertexStack.pop();
+//            }
+//        }
+//        return traversalOrder;
+    }
+>>>>>>> 4580f9c3d2b0a55b8a06cda12dc5665eb4892989
 }
 
