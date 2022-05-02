@@ -1,14 +1,19 @@
 import java.util.Iterator;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 public class Vertex<T> implements VertexInterface<T>
 {
+    private T label;
+    private ListIterator<T> edgeList;
     private boolean visited;
-    private T data;
+    private VertexInterface<T> previousVertex;
+    private double cost;
 
     @Override
     public T getLabel()
     {
-        return data;
+        return label;
     }
 
     @Override
@@ -134,4 +139,38 @@ public class Vertex<T> implements VertexInterface<T>
             return weight;
         } // end getWeight
     } // end Edge
+
+    private class NeighborIterator implements Iterator<VertexInterface<T>>
+    {
+
+        private Iterator<Edge> edges;
+
+        private NeighborIterator()
+        {
+            edges = edgeList.getIterator();
+        }
+        @Override
+        public boolean hasNext()
+        {
+            return edges.hasNext();
+        }
+
+        @Override
+        public VertexInterface<T> next()
+        {
+            VertexInterface<T> nextNeighbor = null;
+            if (edges.hasNext())
+            {
+                Edge edgeToNextNeighbor = edges.next();
+                nextNeighbor = edgeToNextNeighbor.getEndVertex();
+            }
+            else
+                throw new NoSuchElementException();
+            return nextNeighbor;
+        }
+        public void remove()
+        {
+            throw new UnsupportedOperationException();
+        } // end remove
+    } // end NeighborIterator
 }
