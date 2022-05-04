@@ -1,6 +1,7 @@
 import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
+import java.util.LinkedList;
 
 public class Vertex<T> implements VertexInterface<T>
 {
@@ -131,6 +132,8 @@ public class Vertex<T> implements VertexInterface<T>
     public double getCost() {
         return 0;
     }
+
+
 
     protected class Edge
     {

@@ -14,23 +14,39 @@ public class Graph<T>
             vertices = n;
             edges = new boolean[vertices][vertices];
             labels = (T[]) new Object[vertices];
-        }
+        } // end constructor
 
+        // Accessor method to get the label of a vertex of this Graph
         public T getLabel(int vertex)
         {
             return labels[vertex];
         }
 
+        public int getVertex(T label)
+        {
+            for(int i = 0; i < labels.length; i++)
+            {
+                if(labels[i] == label)
+                {
+                    return i;
+                }
+            }
+            return 0;
+        }
+
+        // Test whether an edge exists
         public boolean isEdge(int source, int target)
         {
             return edges [source][target];
         }
 
+        // Add an edge
         public void addEdge(int source, int target)
         {
-            edges[source][target] = false;
+            edges[source][target] = true;
         }
 
+        // Obtain a list of neighbors of a specified vertex of this Graph
         public int[] neighbors(int vertex)
         {
             int i;
@@ -52,26 +68,48 @@ public class Graph<T>
             return answer;
         }
 
+        // Remove an edge
         public void removeEdge(int source, int target)
         {
             edges[source][target] = false;
         }
 
+        // Change the label of a vertex of this Graph
         public void setLabel(int vertex, T newLabel)
         {
-        labels[vertex] = newLabel;
+            labels[vertex] = newLabel;
         }
 
+        // Accessor method to determine the number of vertices in this Graph
         public int size()
         {
             return labels.length;
-        }
+        } // end size
+
+
         // @author Frank M. Carrano, Timothy M. Henry
         // @version 5.0
         public QueueInterface<T> getBreadthFirstTraversal(T origin)
         {
-//           resetVertices();
             QueueInterface<T> traversalOrder = new LinkedQueue<>();
+            QueueInterface<T> vertexQueue = new LinkedQueue<>();
+
+            traversalOrder.enqueue(origin);
+            vertexQueue.enqueue(origin);
+
+            while(!vertexQueue.isEmpty())
+            {
+                T rootNode = vertexQueue.dequeue();
+                int rootVertex = getVertex(rootNode);
+                int[] neighbors = neighbors(rootVertex);
+
+
+
+                for(int i = 0; i < neighbors.length; i++)
+                {
+
+                }
+            }
 //            QueueInterface<VertexInterface<T>> vertexQueue = new LinkedQueue<>();
 //
 //            VertexInterface<T> originVertex = vertices.getValue(origin);

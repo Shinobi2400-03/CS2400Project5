@@ -4,7 +4,7 @@ public class GraphDriver
 {
     public static void main(String[] args) throws IOException
     {
-        Graph newGraph = new Graph(9);
+        Graph<String> newGraph = new Graph<>(9);
 
         newGraph.setLabel(0, "A");
         newGraph.setLabel(1, "B");
