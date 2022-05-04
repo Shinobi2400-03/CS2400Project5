@@ -1,17 +1,14 @@
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Scanner;
-import java.io.*;
-import java.util.Vector;
+
 public class Graph<T>
 {
-        private boolean[][] edges;
-        private T[] labels;
-        private int vertices;
+        private final boolean[][] edges;
+        private final T[] labels;
+        private final int vertices;
 
         public Graph(int n)
         {
             vertices = n;
+<<<<<<< HEAD
             edges = new boolean[vertices][vertices];
             labels = (T[]) new Object[vertices];
         } // end constructor
@@ -20,6 +17,10 @@ public class Graph<T>
         public T getLabel(int vertex)
         {
             return labels[vertex];
+=======
+            edges = new boolean[n][n];
+            labels = (T[]) new Object[n];
+>>>>>>> ca3370ee23ca7f60ebefd35766e375093cbb3f05
         }
 
         public int getVertex(T label)
@@ -46,7 +47,15 @@ public class Graph<T>
             edges[source][target] = true;
         }
 
+<<<<<<< HEAD
         // Obtain a list of neighbors of a specified vertex of this Graph
+=======
+        public T getLabel(int vertex)
+    {
+        return labels[vertex];
+    }
+
+>>>>>>> ca3370ee23ca7f60ebefd35766e375093cbb3f05
         public int[] neighbors(int vertex)
         {
             int i;
@@ -84,8 +93,12 @@ public class Graph<T>
         public int size()
         {
             return labels.length;
+<<<<<<< HEAD
         } // end size
 
+=======
+        }
+>>>>>>> ca3370ee23ca7f60ebefd35766e375093cbb3f05
 
         // @author Frank M. Carrano, Timothy M. Henry
         // @version 5.0
@@ -137,62 +150,40 @@ public class Graph<T>
             return traversalOrder;
         } // end getBreadthFirstTraversal
 
-        public void getDepthFirstTraversal(T origin)//
+        public QueueInterface<T> getDepthFirstTraversal(T origin)
         {
+            QueueInterface<T> traversalOrder = new LinkedQueue<T>();
             StackInterface<VertexInterface<T>> vertexStack = new LinkedStack();
+
             VertexInterface<T> originVertex = new Vertex(origin);
-
-            vertexStack.push(originVertex);
             originVertex.visit();
+            traversalOrder.enqueue(origin);
+            vertexStack.push(originVertex);
 
-            while (!vertexStack.isEmpty()) {
-                originVertex = vertexStack.peek();
-                vertexStack.pop();
-                if (!originVertex.isVisited()) {
-                    System.out.print(origin + " ");
-                    originVertex.isVisited();
-                }
+            while(!vertexStack.isEmpty())
+            {
+                VertexInterface<T> topVertex = vertexStack.peek();
+                VertexInterface<T> next = topVertex.getUnvisitedNeighbor();
 
-                VertexInterface<T> next = originVertex.getUnvisitedNeighbor();
-                while (!next.isVisited()) {
+                if(next != null)
+                {
+                    next.visit();
+                    System.out.println(next);
+                    traversalOrder.enqueue(next.getLabel());
                     vertexStack.push(next);
                 }
+                else
+                    vertexStack.pop();
             }
+            return traversalOrder;
+        }
 
-//        QueueInterface<E> traversalOrder = new LinkedQueue<E>();
-//        StackInterface<VertexInterface<E>> vertexStack = new LinkedStack();
-//
-//        VertexInterface<E> originVertex = new Vertex(origin);
-//        originVertex.visit();
-//        traversalOrder.enqueue(origin);
-//        vertexStack.push(originVertex);
-//
-//        while(!vertexStack.isEmpty())
-//        {
-//            originVertex = vertexStack.peek();
-//            vertexStack.pop();
-//
-//            if(!originVertex.isVisited())
-//            {
-//                System.out.println(origin + " ");
-//                originVertex.visit();
-//            }
-//
-//            VertexInterface<E> topVertex = vertexStack.peek();
-//            VertexInterface<E> next = topVertex.getUnvisitedNeighbor();
-//
-//            while(next != null)
-//            {
-//                if(!next.isVisited())
-//                {
-//                    next.visit();
-//                    traversalOrder.enqueue(next.getLabel());
-//                    vertexStack.push(next);
-//                }
-//                vertexStack.pop();
-//            }
-//        }
-//        return traversalOrder;
+        void dfs()
+        {
+            for (int i = 0; i < vertices; i++)
+            {
+                getDepthFirstTraversal(getLabel(i));
+            }
         }
 }
 
