@@ -1,128 +1,73 @@
-
 public class Graph<T>
 {
-        private final boolean[][] edges;
-        private final T[] labels;
-        private final int vertices;
+    private final boolean[][] edges;
+    private final T[] labels;
+    private final int vertices;
 
-        public Graph(int n)
-        {
-            vertices = n;
-<<<<<<< HEAD
-            edges = new boolean[vertices][vertices];
-            labels = (T[]) new Object[vertices];
-        } // end constructor
+    public Graph(int n)
+    {
+        vertices = n;
+        edges = new boolean[n][n];
+        labels = (T[]) new Object[n];
+    }
 
-        // Accessor method to get the label of a vertex of this Graph
-        public T getLabel(int vertex)
-        {
-            return labels[vertex];
-=======
-            edges = new boolean[n][n];
-            labels = (T[]) new Object[n];
->>>>>>> ca3370ee23ca7f60ebefd35766e375093cbb3f05
-        }
+    public boolean isEdge(int source, int target)
+    {
+        return edges [source][target];
+    }
 
-        public int getVertex(T label)
-        {
-            for(int i = 0; i < labels.length; i++)
-            {
-                if(labels[i] == label)
-                {
-                    return i;
-                }
-            }
-            return 0;
-        }
+    public void addEdge(int source, int target)
+    {
+        edges[source][target] = false;
+    }
 
-        // Test whether an edge exists
-        public boolean isEdge(int source, int target)
-        {
-            return edges [source][target];
-        }
-
-        // Add an edge
-        public void addEdge(int source, int target)
-        {
-            edges[source][target] = true;
-        }
-
-<<<<<<< HEAD
-        // Obtain a list of neighbors of a specified vertex of this Graph
-=======
-        public T getLabel(int vertex)
+    public T getLabel(int vertex)
     {
         return labels[vertex];
     }
 
->>>>>>> ca3370ee23ca7f60ebefd35766e375093cbb3f05
-        public int[] neighbors(int vertex)
-        {
-            int i;
-            int count = 0;
-            int[] answer = new int[0];
+    public int[] neighbors(int vertex)
+    {
+        int i;
+        int count = 0;
+        int[] answer = new int[0];
 
-            for (i = 0; i < labels.length; i++)
-            {
-                if (edges[vertex][i])
-                    count++;
-            }
-            answer = new int[count];
-            count = 0;
-            for (i = 0; i < labels.length; i++)
-            {
-                if (edges[vertex][i])
-                    answer[count++] = i;
-            }
-            return answer;
+        for (i = 0; i < labels.length; i++)
+        {
+            if (edges[vertex][i])
+                count++;
         }
-
-        // Remove an edge
-        public void removeEdge(int source, int target)
+        answer = new int[count];
+        count = 0;
+        for (i = 0; i < labels.length; i++)
         {
-            edges[source][target] = false;
+            if (edges[vertex][i])
+                answer[count++] = i;
         }
+        return answer;
+    }
 
-        // Change the label of a vertex of this Graph
-        public void setLabel(int vertex, T newLabel)
-        {
-            labels[vertex] = newLabel;
-        }
+    public void removeEdge(int source, int target)
+    {
+        edges[source][target] = false;
+    }
 
-        // Accessor method to determine the number of vertices in this Graph
-        public int size()
-        {
-            return labels.length;
-<<<<<<< HEAD
-        } // end size
+    public void setLabel(int vertex, T newLabel)
+    {
+        labels[vertex] = newLabel;
+    }
 
-=======
-        }
->>>>>>> ca3370ee23ca7f60ebefd35766e375093cbb3f05
+    public int size()
+    {
+        return labels.length;
+    }
 
-        // @author Frank M. Carrano, Timothy M. Henry
-        // @version 5.0
-        public QueueInterface<T> getBreadthFirstTraversal(T origin)
-        {
-            QueueInterface<T> traversalOrder = new LinkedQueue<>();
-            QueueInterface<T> vertexQueue = new LinkedQueue<>();
-
-            traversalOrder.enqueue(origin);
-            vertexQueue.enqueue(origin);
-
-            while(!vertexQueue.isEmpty())
-            {
-                T rootNode = vertexQueue.dequeue();
-                int rootVertex = getVertex(rootNode);
-                int[] neighbors = neighbors(rootVertex);
-
-
-
-                for(int i = 0; i < neighbors.length; i++)
-                {
-
-                }
-            }
+    // @author Frank M. Carrano, Timothy M. Henry
+    // @version 5.0
+    public QueueInterface<T> getBreadthFirstTraversal(T origin)
+    {
+//           resetVertices();
+        QueueInterface<T> traversalOrder = new LinkedQueue<>();
 //            QueueInterface<VertexInterface<T>> vertexQueue = new LinkedQueue<>();
 //
 //            VertexInterface<T> originVertex = vertices.getValue(origin);
@@ -147,43 +92,42 @@ public class Graph<T>
 //                } // end while
 //            } // end while
 
-            return traversalOrder;
-        } // end getBreadthFirstTraversal
+        return traversalOrder;
+    } // end getBreadthFirstTraversal
 
-        public QueueInterface<T> getDepthFirstTraversal(T origin)
+    public QueueInterface<T> getDepthFirstTraversal(T origin)
+    {
+        QueueInterface<T> traversalOrder = new LinkedQueue<T>();
+        StackInterface<VertexInterface<T>> vertexStack = new LinkedStack();
+
+        VertexInterface<T> originVertex = new Vertex(origin);
+        originVertex.visit();
+        traversalOrder.enqueue(origin);
+        vertexStack.push(originVertex);
+
+        while(!vertexStack.isEmpty())
         {
-            QueueInterface<T> traversalOrder = new LinkedQueue<T>();
-            StackInterface<VertexInterface<T>> vertexStack = new LinkedStack();
+            VertexInterface<T> topVertex = vertexStack.peek();
+            VertexInterface<T> next = topVertex.getUnvisitedNeighbor();
 
-            VertexInterface<T> originVertex = new Vertex(origin);
-            originVertex.visit();
-            traversalOrder.enqueue(origin);
-            vertexStack.push(originVertex);
-
-            while(!vertexStack.isEmpty())
+            if(next != null)
             {
-                VertexInterface<T> topVertex = vertexStack.peek();
-                VertexInterface<T> next = topVertex.getUnvisitedNeighbor();
-
-                if(next != null)
-                {
-                    next.visit();
-                    System.out.println(next);
-                    traversalOrder.enqueue(next.getLabel());
-                    vertexStack.push(next);
-                }
-                else
-                    vertexStack.pop();
+                next.visit();
+                System.out.println(next);
+                traversalOrder.enqueue(next.getLabel());
+                vertexStack.push(next);
             }
-            return traversalOrder;
+            else
+                vertexStack.pop();
         }
+        return traversalOrder;
+    }
 
-        void dfs()
+    void dfs()
+    {
+        for (int i = 0; i < vertices; i++)
         {
-            for (int i = 0; i < vertices; i++)
-            {
-                getDepthFirstTraversal(getLabel(i));
-            }
+            getDepthFirstTraversal(getLabel(i));
         }
+    }
 }
-
