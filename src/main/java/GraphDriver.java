@@ -30,8 +30,11 @@ public class GraphDriver
         newGraph.addEdge(2,1);
         newGraph.addEdge(8,5);
 
+
+        newGraph.bfs("A");
         //newGraph.getDepthFirstTraversal(0);
         newGraph.dfs();
+
     }
 
 

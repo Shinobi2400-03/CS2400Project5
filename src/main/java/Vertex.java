@@ -136,7 +136,7 @@ public class Vertex<T> implements VertexInterface<T>
 
             if (!duplicateEdge)
             {
-                //edgeList.add(new Edge(endVertex, edgeWeight));
+                edgeList.add((T) new Edge(endVertex, edgeWeight));
                 result = true;
             } // end if
         } // end if
