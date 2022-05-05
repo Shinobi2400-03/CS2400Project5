@@ -26,18 +26,10 @@ public class GraphDriver {
         newGraph.addEdge(2,1);
         newGraph.addEdge(8,5);
 
-<<<<<<< HEAD
-
-        newGraph.bfs("A");
-        //newGraph.getDepthFirstTraversal(0);
-        newGraph.dfs();
-
-=======
         System.out.println("Breadth First Traversal");
         newGraph.getBreadthFirstTraversal(0);
 
         System.out.println("Depth First Traversal");
         newGraph.getDepthFirstTraversal(0);
->>>>>>> ed1c1acfe6f5040547507c525e48bdabd935fe42
     }
 }

@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import java.util.Iterator;
-
-=======
 import java.util.*;
 //Modified Graph class from lecture slides.
->>>>>>> ed1c1acfe6f5040547507c525e48bdabd935fe42
 public class Graph<T>
 {
     private final int vertices;
@@ -56,76 +51,9 @@ public class Graph<T>
         {
             source = queue.poll(); //Retrieves the first element in the queue.
 
-<<<<<<< HEAD
-    public void removeEdge(int source, int target)
-    {
-        edges[source][target] = false;
-    }
-
-    public void setLabel(int vertex, T newLabel)
-    {
-        labels[vertex] = newLabel;
-    }
-
-    public int size()
-    {
-        return labels.length;
-    }
-
-    // @author Frank M. Carrano, Timothy M. Henry
-    // @version 5.0
-    public QueueInterface<T> getBreadthFirstTraversal(T origin)
-    {
-//           resetVertices();
-        QueueInterface<T> traversalOrder = new LinkedQueue<>();
-            QueueInterface<VertexInterface<T>> vertexQueue = new LinkedQueue<>();
-
-            VertexInterface<T> originVertex = new Vertex<>(origin);
-            originVertex.visit();
-            traversalOrder.enqueue(origin);    // Enqueue vertex label
-            vertexQueue.enqueue(originVertex); // Enqueue vertex
-
-            while (!vertexQueue.isEmpty())
-            {
-                VertexInterface<T> frontVertex = vertexQueue.dequeue();
-                Iterator<VertexInterface<T>> neighbors = frontVertex.getNeighborIterator();
-
-                while (neighbors.hasNext())
-                {
-                    VertexInterface<T> nextNeighbor = neighbors.next();
-                    if (!nextNeighbor.isVisited())
-                    {
-                        nextNeighbor.visit();
-                        traversalOrder.enqueue(nextNeighbor.getLabel());
-                        vertexQueue.enqueue(nextNeighbor);
-                    } // end if
-                } // end while
-            } // end while
-
-        return traversalOrder;
-    } // end getBreadthFirstTraversal
-
-    public QueueInterface<T> getDepthFirstTraversal(T origin)
-    {
-        QueueInterface<T> traversalOrder = new LinkedQueue<T>();
-        StackInterface<VertexInterface<T>> vertexStack = new LinkedStack();
-
-        VertexInterface<T> originVertex = new Vertex<>(origin);
-        originVertex.visit();
-        traversalOrder.enqueue(origin);
-        vertexStack.push(originVertex);
-
-        while(!vertexStack.isEmpty())
-        {
-            VertexInterface<T> topVertex = vertexStack.peek();
-            VertexInterface<T> next = topVertex.getUnvisitedNeighbor();
-
-            if(next != null)
-=======
             //Enhanced for loop that iterates to the neighbor of the indicated source, while simultaneously
             //assigning the neighbor to nextVertex.
             for (int nextVertex : (Iterable<Integer>) edges[source])
->>>>>>> ed1c1acfe6f5040547507c525e48bdabd935fe42
             {
                 if (!visited[nextVertex]) //Condition to check if the source was visited or not.
                 {
@@ -137,23 +65,9 @@ public class Graph<T>
         }
         System.out.println(); //Printing a new line to display the correct order of outputs.
     }
-<<<<<<< HEAD
-
-    void bfs(T origin)
-    {
-        QueueInterface<T> breadth = getBreadthFirstTraversal(origin);
-
-        while(!breadth.isEmpty())
-        {
-            System.out.print(breadth.dequeue());
-        }
-    }
-    void dfs()
-=======
     //getDepthFirstTraversal method that begins at the origin visiting its neighbors and neighbor's neighbors,
     //until it has no unvisited neighbor, while backing up by one vertex it considers another neighbor.
     void getDepthFirstTraversal(int source)
->>>>>>> ed1c1acfe6f5040547507c525e48bdabd935fe42
     {
         reset(); //Resets boolean array so al entries are false.
         while(source < vertices) //In order to iterate through each of the established vertexes a while loop is used.
