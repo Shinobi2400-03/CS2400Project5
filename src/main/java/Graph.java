@@ -94,55 +94,51 @@ public class Graph<T>
 
     }
 
-//    //getDepthFirstTraversal method that begins at the origin visiting its neighbors and neighbor's neighbors,
-//    //until it has no unvisited neighbor, while backing up by one vertex it considers another neighbor.
-//    void getDepthFirstTraversal(int source)
-//    {
-//        Stack<Integer> stack = new Stack<>();
-//
-//        Stack<Integer> displayStack = new Stack<>();
-//
-//        //int count = 0;
-//        stack.push(source);
-//        displayStack.push(source);
-//
-//        while(!stack.isEmpty())
-//        {
-//            source = stack.pop();
-//
-////            int target = 0;
-////            int[] temp = neighbors(source);
-////
-////            if(temp.length > 0)
-////                target = temp[0];
-//
-//
-//            Iterator<T> itr = Arrays.asList(labels[source]).iterator();
-//
-//            while(itr.hasNext())
-//            {
-//                int v = (Integer) itr.next();
-//                if(!displayStack.contains(v))
-//                {
-//                    displayStack.push(v);
-//                    stack.push(v);
-//                }
-//            }
-//            //source++;
-//
-////            while(isEdge(source,target))
-////            {
-////                if(displayStack.contains(target))
-////                    break;
-////
-////                stack.push(target);
-////                displayStack.push(target);
-////                edges[source][target] = false;
-////            }
-//        }
-//        Object[] display = displayStack.toArray();
-//        for (int i = 0; i < displayStack.size(); i++)
-//            System.out.print(display[i] + " ");
-//    }
+    void getDepthFirstTraversal(int source)
+    {
+        Stack<Integer> stack = new Stack();
+        Stack<Integer> displayStack = new Stack();
+
+        int count = 0;
+        stack.push(source);
+        displayStack.push(source);
+
+        while(!stack.isEmpty())
+        {
+            source = stack.pop();
+            int target = 0;
+            int[] tempArr = neighbors(source);
+
+            if(tempArr.length > 0)
+                target = tempArr[0];
+
+            if(displayStack.contains(target))
+            {
+                int counter = 0;
+                if(tempArr.length > 1)
+                    target = tempArr[counter++];
+                else
+                {
+                    int temp = displayStack.pop();
+                    source = displayStack.peek();
+                    target = (Integer) getLabel(source);
+                    displayStack.push(temp);
+                }
+            }
+            if(displayStack.contains(target))
+                edges[source][target] = false;
+
+            while(isEdge(source,target))
+            {
+                stack.push(target);
+                displayStack.push(target);
+                edges[source][target] = false;
+
+            }
+        }
+        Object[] display = displayStack.toArray();
+        for (int i = 0; i < displayStack.size(); i++)
+            System.out.print(display[i] + " ");
+    }
 }
 
