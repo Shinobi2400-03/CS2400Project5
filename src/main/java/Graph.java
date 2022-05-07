@@ -125,9 +125,28 @@ public class Graph<T>
                     displayStack.push(temp);
                 }
             }
-            if(displayStack.contains(target))
-                edges[source][target] = false;
 
+            if(displayStack.contains(target))
+            {
+                for(int i = 0; i < edges.length; i++)
+                {
+                    for(int j = 0; j < edges.length; j++)
+                    {
+                        if(!displayStack.contains(i))
+                        {
+                            if(isEdge(i,j))
+                            {
+                                stack.push(i);
+                                displayStack.push(i);
+                                stack.push(j);
+                                displayStack.push(j);
+                                edges[i][j] = false;
+                            }
+                        }
+                    }
+                }
+            }
+            
             while(isEdge(source,target))
             {
                 stack.push(target);
