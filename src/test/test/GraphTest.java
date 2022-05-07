@@ -85,7 +85,7 @@ class GraphTest {
         expectedTraversalOrder.add("I");
 
         // Assert
-        assertEquals(expectedTraversalOrder, actualTraversalOrder);
+        assertEquals(actualTraversalOrder, expectedTraversalOrder);
     }
 
     @org.junit.jupiter.api.Test
