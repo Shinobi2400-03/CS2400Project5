@@ -2,40 +2,40 @@ public class GraphDriver {
     public static void main(String[] args) {
         Graph graph1 = new Graph(9);
 
-        graph1.addLabel(0,1);
-        graph1.addLabel(0,3);
-        graph1.addLabel(0,4);
-
-        graph1.addLabel(1,4);
-
-        graph1.addLabel(2,1);
-
-        graph1.addLabel(3,6);
-
-        graph1.addLabel(4,5);
-        graph1.addLabel(4,7);
-
-        graph1.addLabel(5,2);
-        graph1.addLabel(5,7);
-
-        graph1.addLabel(6,7);
-
-        graph1.addLabel(7,8);
-
-        graph1.addLabel(8,5);
-
-
+//        graph1.addLabel(0,1);
+//        graph1.addLabel(0,3);
+//        graph1.addLabel(0,4);
+//
+//        graph1.addLabel(1,4);
+//
+//        graph1.addLabel(2,1);
+//
+//        graph1.addLabel(3,6);
+//
+//        graph1.addLabel(4,5);
+//        graph1.addLabel(4,7);
+//
+//        graph1.addLabel(5,2);
+//        graph1.addLabel(5,7);
+//
+//        graph1.addLabel(6,7);
+//
+//        graph1.addLabel(7,8);
+//
+//        graph1.addLabel(8,5);
 
 
-//        graph1.addLabel(0,"A");
-//        graph1.addLabel(1,"B");
-//        graph1.addLabel(2,"C");
-//        graph1.addLabel(3,"D");
-//        graph1.addLabel(4,"E");
-//        graph1.addLabel(5,"F");
-//        graph1.addLabel(6,"G");
-//        graph1.addLabel(7,"H");
-//        graph1.addLabel(8,"I");
+
+
+        graph1.addLabel(0,"A");
+        graph1.addLabel(1,"B");
+        graph1.addLabel(2,"C");
+        graph1.addLabel(3,"D");
+        graph1.addLabel(4,"E");
+        graph1.addLabel(5,"F");
+        graph1.addLabel(6,"G");
+        graph1.addLabel(7,"H");
+        graph1.addLabel(8,"I");
 
         graph1.addEdge(0,1);
         graph1.addEdge(0,3);
@@ -60,7 +60,7 @@ public class GraphDriver {
         graph1.addEdge(8,5);
 
 //        System.out.println("Breadth First Traversal");
-//        graph1.getBreadthFirstTraversal(0);
+        graph1.getBreadthFirstTraversal(0);
 
         System.out.println("\nDepth First Traversal");
         graph1.getDepthFirstTraversal(0);

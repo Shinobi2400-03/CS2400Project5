@@ -59,7 +59,7 @@ public class Graph<T>
     }
 
     //getBreadthFirstTraversal method lists the origin, then its neighbors, then their neighbors as well.
-    void getBreadthFirstTraversal(int source)
+    public Queue<T> getBreadthFirstTraversal(int source)
     {
         Queue<Integer> queue = new ConcurrentLinkedQueue<>(); //Creating a queue container to store edges and use the queue methods.
 
@@ -92,8 +92,15 @@ public class Graph<T>
             }
         }
         Object[] display = displayQueue.toArray();
+        Queue<T> result = new ConcurrentLinkedQueue<>();
         for (int i = 0; i < displayQueue.size(); i++)
-            System.out.print(display[i] + " ");
+        {
+            T entry = labels[(int)display[i]];
+            result.add(entry);
+            System.out.print(entry + " ");
+        }
+        return result;
+
     }
 
     //getDepthFirstTraversal method that begins at the origin visiting its neighbors and neighbor's neighbors,
