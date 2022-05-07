@@ -7,6 +7,7 @@ public class Graph<T>
     private final int vertices;
     private T[] labels;
     private boolean [][] edges;
+//    private LinkedList<Integer> adjList[];
 
     public Graph(int vertices)
     {
@@ -17,10 +18,16 @@ public class Graph<T>
 
         //Initializing labels as a Stack object array.
         labels = (T[]) new Object[vertices];
+
+//        adjList = new LinkedList[vertices];
     }
 
     //addEdge method takes in a source(index) of an array and pushes the target.
-    public void addEdge(int source, int target) { edges[source][target] = true; }
+    public void addEdge(int source, int target)
+    {
+        edges[source][target] = true;
+//        adjList[source].add(target);
+    }
 
     public boolean isEdge(int source, int target) { return edges[source][target]; }
     //addLabel method labels certain indexes with specific number i.e 0 = A, 1 = B ... etc.
@@ -94,7 +101,12 @@ public class Graph<T>
 
     }
 
-    void getDepthFirstTraversal(int source)
+    public void getDepthFirstTraversal1(int source)
+    {
+        Queue<T>
+    }
+
+    public void getDepthFirstTraversal(int source)
     {
         Stack<Integer> stack = new Stack();
         Stack<Integer> displayStack = new Stack();
