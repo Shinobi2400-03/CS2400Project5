@@ -29,15 +29,6 @@ public class Graph<T>
     //getLabel method returns label of the specific index indicated in the array.
     public T getLabel(int vertex) { return labels[vertex]; }
 
-    //reset method reinitialized the boolean array so all its values will be equal to false.
-//    //void reset() {
-//
-//        //Initializing edges as a Stack object array.
-//        edges = new boolean[vertices][vertices];
-//
-//        //Initializing labels as a Stack object array.
-//        labels = (T[]) new Object[vertices];}
-
     public int[] neighbors(int vertex) {
 
         int count = 0;
@@ -81,8 +72,8 @@ public class Graph<T>
 
                 if (isEdge(source, target)) //Condition that will loop as long as we have entries in our queue.
                 {
-                    if(displayQueue.contains(target))
-                        edges[source][target] = false;
+//                    if(displayQueue.contains(target))
+//                        edges[source][target] = false;
 
                     displayQueue.add(target);
                     edges[source][target] = false;
@@ -103,55 +94,55 @@ public class Graph<T>
 
     }
 
-    //getDepthFirstTraversal method that begins at the origin visiting its neighbors and neighbor's neighbors,
-    //until it has no unvisited neighbor, while backing up by one vertex it considers another neighbor.
-    void getDepthFirstTraversal(int source)
-    {
-        Stack<Integer> stack = new Stack<>();
-
-        Stack<Integer> displayStack = new Stack<>();
-
-        //int count = 0;
-        stack.push(source);
-        displayStack.push(source);
-
-        while(!stack.isEmpty())
-        {
-            source = stack.pop();
-
-//            int target = 0;
-//            int[] temp = neighbors(source);
+//    //getDepthFirstTraversal method that begins at the origin visiting its neighbors and neighbor's neighbors,
+//    //until it has no unvisited neighbor, while backing up by one vertex it considers another neighbor.
+//    void getDepthFirstTraversal(int source)
+//    {
+//        Stack<Integer> stack = new Stack<>();
 //
-//            if(temp.length > 0)
-//                target = temp[0];
-
-
-            Iterator<T> itr = Arrays.asList(labels[source]).iterator();
-
-            while(itr.hasNext())
-            {
-                int v = (Integer) itr.next();
-                if(!displayStack.contains(v))
-                {
-                    displayStack.push(v);
-                    stack.push(v);
-                }
-            }
-            //source++;
-
-//            while(isEdge(source,target))
+//        Stack<Integer> displayStack = new Stack<>();
+//
+//        //int count = 0;
+//        stack.push(source);
+//        displayStack.push(source);
+//
+//        while(!stack.isEmpty())
+//        {
+//            source = stack.pop();
+//
+////            int target = 0;
+////            int[] temp = neighbors(source);
+////
+////            if(temp.length > 0)
+////                target = temp[0];
+//
+//
+//            Iterator<T> itr = Arrays.asList(labels[source]).iterator();
+//
+//            while(itr.hasNext())
 //            {
-//                if(displayStack.contains(target))
-//                    break;
-//
-//                stack.push(target);
-//                displayStack.push(target);
-//                edges[source][target] = false;
+//                int v = (Integer) itr.next();
+//                if(!displayStack.contains(v))
+//                {
+//                    displayStack.push(v);
+//                    stack.push(v);
+//                }
 //            }
-        }
-        Object[] display = displayStack.toArray();
-        for (int i = 0; i < displayStack.size(); i++)
-            System.out.print(display[i] + " ");
-    }
+//            //source++;
+//
+////            while(isEdge(source,target))
+////            {
+////                if(displayStack.contains(target))
+////                    break;
+////
+////                stack.push(target);
+////                displayStack.push(target);
+////                edges[source][target] = false;
+////            }
+//        }
+//        Object[] display = displayStack.toArray();
+//        for (int i = 0; i < displayStack.size(); i++)
+//            System.out.print(display[i] + " ");
+//    }
 }
 
