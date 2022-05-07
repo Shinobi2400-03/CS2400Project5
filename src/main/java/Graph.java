@@ -7,7 +7,11 @@ public class Graph<T>
     private final int vertices;
     private T[] labels;
     private boolean [][] edges;
+<<<<<<< HEAD
 //    private LinkedList<Integer> adjList[];
+=======
+    private String[] label;
+>>>>>>> d312ba09f81d3aee985d765d25cce4f5f511e4c8
 
     public Graph(int vertices)
     {
@@ -19,7 +23,12 @@ public class Graph<T>
         //Initializing labels as a Stack object array.
         labels = (T[]) new Object[vertices];
 
+<<<<<<< HEAD
 //        adjList = new LinkedList[vertices];
+=======
+        label = new String[vertices];
+
+>>>>>>> d312ba09f81d3aee985d765d25cce4f5f511e4c8
     }
 
     //addEdge method takes in a source(index) of an array and pushes the target.
@@ -32,6 +41,8 @@ public class Graph<T>
     public boolean isEdge(int source, int target) { return edges[source][target]; }
     //addLabel method labels certain indexes with specific number i.e 0 = A, 1 = B ... etc.
     void addLabel(int vertex, T newLabel) { labels[vertex] = newLabel; }
+
+    void addLabel(int vertex, String newLabel) { label[vertex] = newLabel; }
 
     //getLabel method returns label of the specific index indicated in the array.
     public T getLabel(int vertex) { return labels[vertex]; }
@@ -54,6 +65,15 @@ public class Graph<T>
             }
         }
         return answer;
+    }
+
+    public void reset()
+    {
+        //Initializing edges as a Stack object array.
+        edges = new boolean[vertices][vertices];
+
+        //Initializing labels as a Stack object array.
+        labels = (T[]) new Object[vertices];
     }
 
     //getBreadthFirstTraversal method lists the origin, then its neighbors, then their neighbors as well.
@@ -90,23 +110,30 @@ public class Graph<T>
             }
         }
         Object[] display = displayQueue.toArray();
-        Queue<T> result = new ConcurrentLinkedQueue<>();
+        Queue<T> result = new ArrayDeque<>();
         for (int i = 0; i < displayQueue.size(); i++)
         {
+<<<<<<< HEAD
             T entry = getLabel((int)display[i]);
             result.add(entry);
             System.out.print(entry + " ");
+=======
+            result.add((T) label[(int) display[i]]);
+>>>>>>> d312ba09f81d3aee985d765d25cce4f5f511e4c8
         }
         return result;
-
     }
 
+<<<<<<< HEAD
     public void getDepthFirstTraversal1(int source)
     {
         Queue<T>
     }
 
     public void getDepthFirstTraversal(int source)
+=======
+    public Stack<T> getDepthFirstTraversal(int source)
+>>>>>>> d312ba09f81d3aee985d765d25cce4f5f511e4c8
     {
         Stack<Integer> stack = new Stack();
         Stack<Integer> displayStack = new Stack();
@@ -158,7 +185,7 @@ public class Graph<T>
                     }
                 }
             }
-            
+
             while(isEdge(source,target))
             {
                 stack.push(target);
@@ -169,7 +196,15 @@ public class Graph<T>
         }
         Object[] display = displayStack.toArray();
         for (int i = 0; i < displayStack.size(); i++)
-            System.out.print(display[i] + " ");
+            System.out.print(label[(int) display[i]] + " ");
+
+        Stack<T> result = new Stack();
+
+        for (int i = 0; i < displayStack.size(); i++)
+        {
+            result.add((T) label[(int) display[i]]);
+        }
+        return result;
     }
 }
 
