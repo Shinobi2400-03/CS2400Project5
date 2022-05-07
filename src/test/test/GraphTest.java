@@ -58,6 +58,6 @@ class GraphTest {
         expectedTraversalOrder.add("I");
 
         // Assert
-        assertEquals(actualTraversalOrder, expectedTraversalOrder);
+        assertEquals(expectedTraversalOrder, actualTraversalOrder);
     }
 }

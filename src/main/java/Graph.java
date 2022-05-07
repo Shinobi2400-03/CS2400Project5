@@ -86,7 +86,7 @@ public class Graph<T>
         Queue<T> result = new ConcurrentLinkedQueue<>();
         for (int i = 0; i < displayQueue.size(); i++)
         {
-            T entry = labels[(int)display[i]];
+            T entry = getLabel((int)display[i]);
             result.add(entry);
             System.out.print(entry + " ");
         }
